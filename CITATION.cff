@@ -1,0 +1,14 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite the following work:"
+title: "Towards an Evaluative AI Framework for Hypothesis-Driven Strategic Decision-Making in SMEs"
+authors:
+  - family-names: "Molina-Abril"
+    given-names: "Ginés"
+  - family-names: "Calvet Liñán"
+    given-names: "Laura"
+  - family-names: "Riera Terrén"
+    given-names: "Daniel"
+date-released: "2025-07-04" #TODO REPLACE WHEN DOI IS READY
+version: "1.0.0"
+doi: "10.1234/example.doi"   #TODO REPLACE WHEN DOI IS READY
+url: "https://github.com/yinx89/evaluative-ai-framework-for-smes"
