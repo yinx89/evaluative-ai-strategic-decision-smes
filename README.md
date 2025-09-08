@@ -1,13 +1,69 @@
 # Towards an Evaluative AI Framework for Hypothesis-Driven Strategic Decision-Making in SMEs
 
-This repository contains an open-source implementation of an **Evaluative AI framework** designed to support hypothesis-driven strategic decision-making processes in small and medium-sized enterprises (SMEs).
+This repository contains a data collection and processing framework for analyzing UK software consultancy companies. It fetches company data from Companies House API and processes their financial information to support strategic decision-making in SMEs.
 
 ## ✨ Features
-- Multi-agent architecture based on LangGraph
-- Integration with vector databases
-- Support for user feedback and hypothesis testing
-- Explainable AI and evaluative agent for transparent decisions
-- Python-first design (with optional Rust components)
+- Companies House API integration for company data retrieval
+- Financial data processing and KPI generation
+- Data caching for efficient API usage
+- Support for multiple SIC codes filtering
+- Automated metrics calculation
+
+## ⚙️ Workflow
+
+### 1 - Ingestion Phase
+
+(See analysis/metadata_and_extra_info/ingestion.md for more information.)
+
+Follow these steps to set up and run the ingestion process:
+
+1. Create a Python virtual environment:
+    ```bash
+    python3 -m venv venv
+    ```
+
+2. Activate the virtual environment:
+    ```bash
+    source venv/bin/activate  # On Unix/macOS
+    # or
+    venv\Scripts\activate     # On Windows
+    ```
+
+3. Install dependencies:
+    ```bash
+    pip install --upgrade pip
+    pip install -r requirements.txt
+    ```
+
+4. Run the ingestion script:
+    ```bash
+    python3 ./ingest/companies_house_data.py --sic-codes "62020" --use-cache y
+    ```
+
+Parameters explained:
+- `--sic-codes`: Standard Industrial Classification codes to filter companies. Example:
+  - "62020" (Default): Computer consultancy activities
+  - Multiple codes can be comma-separated: "62020,62021"
+- `--use-cache`: Cache management (true/False)
+  - "False" (Default): Force fresh data fetch from Companies House API
+  - "true": Use existing cached data if available
+
+### 2 - Financial Data Processing
+
+After ingesting the company data, you can process financial information:
+
+1. Ensure your virtual environment is activated
+2. Run the financial data processing script:
+```bash
+python3 ./process/get_financial_data.py
+```
+
+The script will:
+- Read company data from `company_details` folder
+- Process and normalize financial metrics
+- Generate key performance indicators (KPIs)
+- Save processed data to `financial_data` folder
+
 
 ## 📚 Citation
 

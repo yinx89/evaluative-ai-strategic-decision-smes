@@ -1,0 +1,192 @@
+Companies with Account Details (showing first 10):
+Company Number                         Company Name Last Accounts Date Next Due Date         Account Type  Overdue
+      15736675   CHURCH DEVELOPMENT CORPORATION LTD         2025-05-31    2027-02-28              dormant    False
+      14037119                N A C ENGINEERING LTD         2025-04-05    2027-01-05         micro-entity    False
+      04651069                  N A BRISTOW LIMITED         2025-03-31    2026-12-31         micro-entity    False
+      08447177                  N A DEVELOPMENT LTD         2025-03-31    2026-12-31         micro-entity    False
+      06682596             N. A. ENTERPRISE LIMITED         2025-03-31    2026-12-31         micro-entity    False
+      03106836                      N A E C LIMITED         2025-03-31    2026-12-31 total-exemption-full    False
+      09998298                    N A D C GROUP LTD         2025-02-28    2026-11-30              dormant    False
+      14603670                N ADAMS TRANSPORT LTD         2025-01-31    2026-10-31         micro-entity    False
+      09366917 N A FOX ACCOUNTANCY SERVICES LIMITED         2024-12-31    2026-09-30         micro-entity    False
+      07244680    DEN HARTOGH TRUCKING FOOD LIMITED         2024-12-31    2026-09-30                small    False
+
+Statistics:
+Total companies in dataset: 100
+Companies with account details: 76
+Percentage with accounts: 76.0%
+
+Account Types Distribution:
+Account Type
+micro-entity            42
+total-exemption-full    16
+dormant                 14
+unaudited-abridged       3
+small                    1
+Name: count, dtype: int64
+
+Detailed Information for Company Number: 07244680
+================================================================================
+
+Basic Information:
+-----------------
+Number: 07244680
+Info Company Name: DEN HARTOGH TRUCKING FOOD LIMITED
+Info Company Status: active
+Info Date Of Creation: 2010-05-06
+Info Type: ltd
+Info Jurisdiction: england-wales
+Info Sic Codes: 49410
+
+Registered Office:
+-----------------
+Info Registered Office Address Address Line 1: The Minories Eastfield Road
+Info Registered Office Address Country: England
+Info Registered Office Address Locality: Immingham
+Info Registered Office Address Postal Code: DN40 3DQ
+Info Undeliverable Registered Office Address: False
+Info Registered Office Address Address Line 2: South Killingholme
+
+Accounts Information:
+--------------------
+Info Accounts Accounting Reference Date Day: 31
+Info Accounts Accounting Reference Date Month: 12
+Info Accounts Last Accounts Made Up To: 2024-12-31
+Info Accounts Last Accounts Period End On: 2024-12-31
+Info Accounts Last Accounts Period Start On: 2024-01-01
+Info Accounts Last Accounts Type: small
+Info Accounts Next Accounts Due On: 2026-09-30
+Info Accounts Next Accounts Overdue: False
+Info Accounts Next Accounts Period End On: 2025-12-31
+Info Accounts Next Accounts Period Start On: 2025-01-01
+Info Accounts Next Due: 2026-09-30
+Info Accounts Next Made Up To: 2025-12-31
+Info Accounts Overdue: False
+Details Transaction Id: MzQ3NTY1NDQwMGFkaXF6a2N4
+Details Barcode: AE7R0YXE
+Details Type: AA
+Details Date: 2025-07-30
+Details Category: accounts
+Details Description: accounts-with-accounts-type-small
+Details Description Values Made Up Date: 2024-12-31
+Details Pages: 9.0
+Details Action Date: 2024-12-31
+Details Links Self: /company/07244680/filing-history/MzQ3NTY1NDQwMGFkaXF6a2N4
+Details Links Document Metadata: https://document-api.company-information.service.gov.uk/document/wRiwlXP0GxavxLakoY69eqKIQuHa8BoPSBC3BStF0dI
+Details Paper Filed: True
+
+Filing History:
+--------------
+Info Links Filing History: /company/07244680/filing-history
+History Filing History Status: filing-history-available
+History Items Transaction Id: MzQ3NTY1NDQwMGFkaXF6a2N4
+History Items Barcode: AE7R0YXE
+History Items Type: AA
+History Items Date: 2025-07-30
+History Items Category: accounts
+History Items Description: accounts-with-accounts-type-small
+History Items Description Values Made Up Date: 2024-12-31
+History Items Pages: 9
+History Items Action Date: 2024-12-31
+History Items Links Self: /company/07244680/filing-history/MzQ3NTY1NDQwMGFkaXF6a2N4
+History Items Links Document Metadata: https://document-api.company-information.service.gov.uk/document/wRiwlXP0GxavxLakoY69eqKIQuHa8BoPSBC3BStF0dI
+History Items Per Page: 25
+History Start Index: 0
+History Total Count: 58
+History Items Paper Filed: True
+
+Officers:
+--------
+Info Links Officers: /company/07244680/officers
+Active Count: 3
+Etag: 34aef9c139cfb2537d9f49bb6d0b1c62c04c54ca
+Items Address Address Line 1: Park Approach
+Items Address Country: England
+Items Address Locality: Leeds
+Items Address Postal Code: LS15 8GB
+Items Address Premises: 4315
+Items Appointed On: 2017-11-10
+Items Is Pre 1992 Appointment: False
+Items Links Self: /company/07244680/appointments/sQoO6YX9v0CGncCwmRFp4Bi5lzE
+Items Links Officer Appointments: /officers/QzuIJcVS_hfx5u0ZY1AGSWve7OE/appointments
+Items Name: ATKINSON, David Lee
+Items Officer Role: director
+Items Person Number: 240093810001
+Items Per Page: 35
+Kind: officer-list
+Links Self: /company/07244680/officers
+Resigned Count: 3
+Inactive Count: 0
+Start Index: 0
+Total Results: 6
+Items Country Of Residence: England
+Items Date Of Birth Month: 9.0
+Items Date Of Birth Year: 1972.0
+Items Nationality: British
+Items Occupation: Director
+
+PSC (Persons with Significant Control):
+--------------------------------------
+Significant Control Items Per Page: 25
+Significant Control Items Etag: cef66dd868a67431dcfe8bc3a3fb171fd5293d8b
+Significant Control Items Notified On: 2024-04-19
+Significant Control Items Country Of Residence: Netherlands
+Significant Control Items Date Of Birth Month: 12.0
+Significant Control Items Date Of Birth Year: 1965.0
+Significant Control Items Name: Mr Klaas Pieter Den Hartogh
+Significant Control Items Name Elements Title: Mr
+Significant Control Items Name Elements Surname: Den Hartogh
+Significant Control Items Name Elements Forename: Klaas
+Significant Control Items Name Elements Middle Name: Pieter
+Significant Control Items Links Self: /company/07244680/persons-with-significant-control/individual/EVYT5X_PjkAl2w9umhg-ePdkphA
+Significant Control Items Nationality: Dutch
+Significant Control Items Ceased: False
+Significant Control Items Kind: individual-person-with-significant-control
+Significant Control Items Address Address Line 1: Willingestraat 6
+Significant Control Items Address Address Line 2: Postbus 59087
+Significant Control Items Address Country: Netherlands
+Significant Control Items Address Locality: Rotterdam
+Significant Control Items Address Premises: 6
+Significant Control Items Natures Of Control: ownership-of-shares-75-to-100-percent,voting-rights-75-to-100-percent
+Significant Control Start Index: 0
+Significant Control Total Results: 2
+Significant Control Active Count: 1
+Significant Control Ceased Count: 1
+Significant Control Links Self: /company/07244680/persons-with-significant-control
+Significant Control Items Address Region: 3087 Am
+
+Charges:
+-------
+Info Has Charges: False
+Total Count: 2
+Unfiltered Count: 2
+Satisfied Count: 0
+Part Satisfied Count: 0
+Info Links Charges: /company/07244680/charges
+Etag: 36a914cc03a3a3693fa9b99ae5020a56f097c8b9
+Items Etag: 0496847cb1bb6fed4e605a7485617e9091c3fd5e
+Items Charge Code: 72446800002.0
+Items Classification Type: charge-description
+Items Classification Description: A registered charge
+Items Charge Number: 2.0
+Items Status: outstanding
+Items Delivered On: 2024-11-29
+Items Created On: 2024-11-28
+Items Particulars Type: brief-description
+Items Particulars Description: N/A.
+Items Particulars Contains Floating Charge: True
+Items Particulars Contains Fixed Charge: True
+Items Particulars Floating Charge Covers All: True
+Items Particulars Contains Negative Pledge: True
+Items Persons Entitled Name: Coöperatieve Rabobank U.A. as Security Agent
+Items Transactions Filing Type: create-charge-with-deed
+Items Transactions Delivered On: 2024-11-29
+Items Transactions Links Filing: /company/07244680/filing-history/MzQ0NTUyNzg5MWFkaXF6a2N4
+Items Links Self: /company/07244680/charges/7sWN6XII9W8xnRQMuFHBUaxE8Os
+
+Other Information:
+-----------------
+Establishments Etag: 02dbf2e7bd223868890bde6a55ab955103a49a6c
+Establishments Kind: related-companies
+Establishments Links Self: /company/07244680
+Timestamp: 2025-08-17T20:39:45.956819
