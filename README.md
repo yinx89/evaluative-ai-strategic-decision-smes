@@ -1,6 +1,28 @@
 # Towards an Evaluative AI Framework for Hypothesis-Driven Strategic Decision-Making in SMEs
 
+> ⚠️ This is an ongoing work, being developed as part of a three-year industrial PhD project. Regular updates and improvements will be made based on feedback and research findings.
+
+This repository implements a process-centric Evaluative AI (EAI) framework designed to address strategic decision-making challenges in SMEs. The framework integrates:
+- Hypothesis-driven evaluation
+- Modular multi-agent architecture
+- Iterative refinement of business hypotheses
+- Integration with Companies House data and internal business metrics
+- Local execution using open-source LLMs for data confidentiality
+
+The system uses specialized agents to evaluate patterns, profitability, and risk within specific business contexts, leveraging both internal company data and trustworthy public sources.owards an Evaluative AI Framework for Hypothesis-Driven Strategic Decision-Making in SMEs
+
 This repository contains a data collection and processing framework for analyzing UK software consultancy companies. It fetches company data from Companies House API and processes their financial information to support strategic decision-making in SMEs.
+
+## 🏗 Technical Architecture
+
+The framework implements a modular and adaptive design that includes:
+- Local execution using open-source LLMs (currently `gpt-oss` 20.9B parameters via Ollama)
+- Pydantic AI for agent creation and LangGraph for workflow orchestration
+- Specialized agents for financial analysis and domain-specific reasoning
+- Built-in reflection layer for agent self-assessment and improvement
+- Support for hypothesis testing across different scenarios
+- State persistence for revisiting and branching decision scenarios
+- Human-in-the-loop interactions for reliability and oversight
 
 ## ✨ Features
 - Companies House API integration for company data retrieval
@@ -63,6 +85,25 @@ The script will:
 - Process and normalize financial metrics
 - Generate key performance indicators (KPIs)
 - Save processed data to `financial_data` folder
+
+### 3 - Decision-Making Process
+
+The framework can be triggered via:
+- Streamlit interface
+- LangGraph Studio
+- API endpoints
+
+The system follows these steps:
+1. Loads or updates business configuration and memory
+2. Orchestrator-reasoner agent coordinates specialized agents
+3. Agents perform analysis including:
+   - Pattern recognition
+   - Profitability assessment
+   - Risk evaluation
+   - Stress testing
+   - Data validation
+4. Results are presented with detailed logs for analysis
+5. State is preserved for scenario comparison and branching
 
 
 ## 📚 Citation
