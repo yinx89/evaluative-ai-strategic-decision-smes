@@ -341,86 +341,38 @@ class CompaniesHouseData:
         self.save_company_numbers(company_list)
         return company_list
 
-    @staticmethod
-    def _summarise_officers(payload: Optional[Dict[str, Any]]) -> Dict[str, Any]:
-        """Reduce an officers payload to counts, discarding the personal records.
+    # Fields inside filing_history[].description_values that carry personal data:
+    # the names of company officers and of persons with significant control, and
+    # residential addresses reported on address-change forms. None of them is used
+    # by this project, which works at company level.
+    _PERSONAL_DESCRIPTION_FIELDS = (
+        'officer_name',
+        'psc_name',
+        'new_address',
+        'old_address',
+        'default_address',
+    )
 
-        The Companies House officers endpoint returns named individuals (names,
-        partial dates of birth, nationalities, correspondence addresses). This
-        project only uses how many officers a company has and how many have
-        resigned, as a governance indicator. Reducing the payload here, at
-        ingestion time, means no personal data is ever written to disk: data
-        minimisation in the sense of Art. 5(1)(c) GDPR.
+    @classmethod
+    def _strip_personal_fields(cls, payload: Optional[Dict[str, Any]]) -> Optional[Dict[str, Any]]:
+        """Remove personal data from a filing-history payload before it is stored.
 
-        The API's own ``active_count``/``resigned_count``/``total_results``
-        fields are authoritative and are used when present. ``items`` is only a
-        fallback, because that list is paginated (``items_per_page``, 35 by
-        default) and counting it would under-report companies with a long
-        officer history.
+        The filing history is needed for its dates, categories and form types.
+        Its ``description_values`` block, however, also carries officer and PSC
+        names and, on address-change filings, residential addresses. Those fields
+        are dropped here, at ingestion time, so that no personal data is written
+        to disk: data minimisation in the sense of Art. 5(1)(c) GDPR.
+
+        Everything else in the payload is preserved untouched.
         """
-        empty = {
-            'officers_exists': False,
-            'officers_active_count': 0,
-            'officers_resigned_count': 0,
-            'officers_total_count': 0,
-        }
         if not payload:
-            return empty
-
-        items = payload.get('items') or []
-        active = payload.get('active_count')
-        resigned = payload.get('resigned_count')
-        total = payload.get('total_results')
-
-        if active is None:
-            active = sum(1 for item in items if not item.get('resigned_on'))
-        if resigned is None:
-            resigned = sum(1 for item in items if item.get('resigned_on'))
-        if total is None:
-            total = len(items) or (active + resigned)
-
-        return {
-            'officers_exists': True,
-            'officers_active_count': int(active),
-            'officers_resigned_count': int(resigned),
-            'officers_total_count': int(total),
-        }
-
-    @staticmethod
-    def _summarise_psc(payload: Optional[Dict[str, Any]]) -> Dict[str, Any]:
-        """Reduce a persons-with-significant-control payload to counts.
-
-        Same rationale and same precedence as :meth:`_summarise_officers`: the
-        API's own counts are used when present, the paginated ``items`` list is
-        only a fallback, and the named records are discarded either way.
-        """
-        empty = {
-            'psc_exists': False,
-            'psc_active_count': 0,
-            'psc_ceased_count': 0,
-            'psc_total_count': 0,
-        }
-        if not payload:
-            return empty
-
-        items = payload.get('items') or []
-        active = payload.get('active_count')
-        ceased = payload.get('ceased_count')
-        total = payload.get('total_results')
-
-        if active is None:
-            active = sum(1 for item in items if not (item.get('ceased_on') or item.get('ceased')))
-        if ceased is None:
-            ceased = sum(1 for item in items if item.get('ceased_on') or item.get('ceased'))
-        if total is None:
-            total = len(items) or (active + ceased)
-
-        return {
-            'psc_exists': True,
-            'psc_active_count': int(active),
-            'psc_ceased_count': int(ceased),
-            'psc_total_count': int(total),
-        }
+            return payload
+        for item in payload.get('items') or []:
+            values = item.get('description_values')
+            if isinstance(values, dict):
+                for field in cls._PERSONAL_DESCRIPTION_FIELDS:
+                    values.pop(field, None)
+        return payload
 
     def get_company_details(self, company_number: str) -> Dict[str, Any]:
         """Get comprehensive company information including iXBRL financial data"""
@@ -438,12 +390,8 @@ class CompaniesHouseData:
         details = {
             'company_number': company_number,
             'basic_info': basic_info,
-            'filing_history': self.make_request(f'company/{company_number}/filing-history', {}, silent=True),
-            **self._summarise_officers(
-                self.make_request(f'company/{company_number}/officers', {}, silent=True)
-            ),
-            **self._summarise_psc(
-                self.make_request(f'company/{company_number}/persons-with-significant-control', {}, silent=True)
+            'filing_history': self._strip_personal_fields(
+                self.make_request(f'company/{company_number}/filing-history', {}, silent=True)
             ),
             'charges': self.make_request(f'company/{company_number}/charges', {}, silent=True),
             'insolvency': self.make_request(f'company/{company_number}/insolvency', {}, silent=True),
