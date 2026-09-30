@@ -109,6 +109,23 @@ The system follows these steps:
 4. Results are presented with detailed logs for analysis
 5. State is preserved for scenario comparison and branching
 
+## 🔒 Personal data
+
+The Companies House officers and persons-with-significant-control endpoints
+return named individuals: names, partial dates of birth, nationalities and
+correspondence addresses. This project uses **only how many** officers a company
+has and how many have resigned, as a governance indicator.
+
+Those payloads are therefore reduced to counts at ingestion time
+(`_summarise_officers`, `_summarise_psc` in `ingest/companies_house_data.py`)
+and the named records are discarded. **No personal data is written to disk, and
+none appears in any output.** The columns that survive are
+`officers_active_count`, `officers_resigned_count`, `officers_total_count` and
+their PSC equivalents.
+
+This is data minimisation in the sense of Art. 5(1)(c) GDPR. No special
+categories of personal data under Art. 9 GDPR are processed at any point.
+
 ## 📚 Citation
 
 If you use this software in academic publications or derived projects, please cite the paper it accompanies:
