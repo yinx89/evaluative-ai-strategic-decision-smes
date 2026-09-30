@@ -107,12 +107,11 @@ The system follows these steps:
 4. Results are presented with detailed logs for analysis
 5. State is preserved for scenario comparison and branching
 
-
 ## 📚 Citation
 
 If you use this software in academic publications or derived projects, please cite the paper it accompanies:
 
-> Molina-Abril, G., Calvet Liñán, L., & Riera Terrén, D. (2025). *Towards an Evaluative AI Framework for Hypothesis-Driven Strategic Decision-Making in SMEs*. In *Intelligent Data Engineering and Automated Learning – IDEAL 2025*, Lecture Notes in Computer Science. Springer. https://doi.org/10.1007/978-3-032-10486-1_34
+> Molina-Abril, G., Calvet, L., Riera, D. (2026). Towards an Evaluative AI Framework for Hypothesis-Driven Strategic Decision-Making in SMEs. In: Martínez, L., et al. *Intelligent Data Engineering and Automated Learning – IDEAL 2025*. IDEAL 2025. Lecture Notes in Computer Science, vol 16238. Springer, Cham. https://doi.org/10.1007/978-3-032-10486-1_34
 
 The accepted manuscript is freely available at https://molina-abril.github.io and deposited in the UOC institutional repository O2 (https://hdl.handle.net/10609/156324, publicly available from 7 November 2026).
 
