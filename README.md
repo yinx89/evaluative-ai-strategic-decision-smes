@@ -122,3 +122,10 @@ You can also use the [`CITATION.cff`](./CITATION.cff) file to import the citatio
 ## 🪪 License
 
 Distributed under the terms of the [MIT License](./LICENSE).
+
+**The MIT licence covers the code only.** The dataset in
+[`financial_data/`](./financial_data/) is derived from UK Companies House public
+records and is covered separately: see
+[`financial_data/README.md`](./financial_data/README.md). It contains public
+sector information licensed under the
+[Open Government Licence v3.0](https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/).
