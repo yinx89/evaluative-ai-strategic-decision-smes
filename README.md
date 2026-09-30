@@ -111,20 +111,26 @@ The system follows these steps:
 
 ## 🔒 Personal data
 
-The Companies House officers and persons-with-significant-control endpoints
-return named individuals: names, partial dates of birth, nationalities and
-correspondence addresses. This project uses **only how many** officers a company
-has and how many have resigned, as a governance indicator.
+**This project processes no personal data.**
 
-Those payloads are therefore reduced to counts at ingestion time
-(`_summarise_officers`, `_summarise_psc` in `ingest/companies_house_data.py`)
-and the named records are discarded. **No personal data is written to disk, and
-none appears in any output.** The columns that survive are
-`officers_active_count`, `officers_resigned_count`, `officers_total_count` and
-their PSC equivalents.
+The Companies House API exposes personal data in several places, and the
+ingestion layer is built to avoid all of them:
 
-This is data minimisation in the sense of Art. 5(1)(c) GDPR. No special
-categories of personal data under Art. 9 GDPR are processed at any point.
+- The **officers** and **persons-with-significant-control** endpoints return
+  named individuals. They are not queried at all.
+- The **filing history** is needed for its dates, categories and form types, but
+  its `description_values` block also carries officer and PSC names and, on
+  address-change filings, residential addresses. Those fields are stripped at
+  ingestion by `_strip_personal_fields` in `ingest/companies_house_data.py`.
+
+Nothing personal is therefore written to disk or reaches any output. This is
+data minimisation in the sense of Art. 5(1)(c) GDPR, and no special categories
+of personal data under Art. 9 GDPR are involved at any point.
+
+Verified against 337 stored company records covering 8,425 filing-history
+entries: 1,613 of them carried a personal name before this change and none does
+after it, while all 6,290 entries carrying the dates the analysis uses are
+preserved unchanged.
 
 ## 📚 Citation
 
