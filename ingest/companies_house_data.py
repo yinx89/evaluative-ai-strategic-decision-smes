@@ -5,7 +5,7 @@ import os
 import argparse
 import duckdb
 from datetime import datetime, timedelta
-from typing import Dict, List, Any, Set
+from typing import Dict, List, Any, Optional, Set
 from datetime import datetime
 from dotenv import load_dotenv
 from get_xbrl_data import get_financial_data
@@ -341,6 +341,57 @@ class CompaniesHouseData:
         self.save_company_numbers(company_list)
         return company_list
 
+    @staticmethod
+    def _summarise_officers(payload: Optional[Dict[str, Any]]) -> Dict[str, Any]:
+        """Reduce an officers payload to counts, discarding the personal records.
+
+        The Companies House officers endpoint returns named individuals (names,
+        partial dates of birth, nationalities, correspondence addresses). This
+        project only ever uses how many officers a company has and how many have
+        resigned, as a governance indicator. Counting here, at ingestion time,
+        means no personal data is ever written to disk: data minimisation in the
+        sense of Art. 5(1)(c) GDPR.
+        """
+        if not payload:
+            return {
+                'officers_exists': False,
+                'officers_active_count': 0,
+                'officers_resigned_count': 0,
+                'officers_total_count': 0,
+            }
+        items = payload.get('items') or []
+        resigned = sum(1 for item in items if item.get('resigned_on'))
+        return {
+            'officers_exists': True,
+            'officers_active_count': len(items) - resigned,
+            'officers_resigned_count': resigned,
+            'officers_total_count': len(items),
+        }
+
+    @staticmethod
+    def _summarise_psc(payload: Optional[Dict[str, Any]]) -> Dict[str, Any]:
+        """Reduce a persons-with-significant-control payload to counts.
+
+        Same rationale as _summarise_officers: the analysis uses the number of
+        controlling parties, never their identities, so the named records are
+        discarded before anything is persisted.
+        """
+        if not payload:
+            return {
+                'psc_exists': False,
+                'psc_active_count': 0,
+                'psc_ceased_count': 0,
+                'psc_total_count': 0,
+            }
+        items = payload.get('items') or []
+        ceased = sum(1 for item in items if item.get('ceased_on') or item.get('ceased'))
+        return {
+            'psc_exists': True,
+            'psc_active_count': len(items) - ceased,
+            'psc_ceased_count': ceased,
+            'psc_total_count': len(items),
+        }
+
     def get_company_details(self, company_number: str) -> Dict[str, Any]:
         """Get comprehensive company information including iXBRL financial data"""
         
@@ -358,8 +409,12 @@ class CompaniesHouseData:
             'company_number': company_number,
             'basic_info': basic_info,
             'filing_history': self.make_request(f'company/{company_number}/filing-history', {}, silent=True),
-            'officers': self.make_request(f'company/{company_number}/officers', {}, silent=True),
-            'persons_significant_control': self.make_request(f'company/{company_number}/persons-with-significant-control', {}, silent=True),
+            **self._summarise_officers(
+                self.make_request(f'company/{company_number}/officers', {}, silent=True)
+            ),
+            **self._summarise_psc(
+                self.make_request(f'company/{company_number}/persons-with-significant-control', {}, silent=True)
+            ),
             'charges': self.make_request(f'company/{company_number}/charges', {}, silent=True),
             'insolvency': self.make_request(f'company/{company_number}/insolvency', {}, silent=True),
             'registers': self.make_request(f'company/{company_number}/registers', {}, silent=True),
