@@ -110,9 +110,11 @@ The system follows these steps:
 
 ## 📚 Citation
 
-If you use this software in academic publications or derived projects, please cite:
+If you use this software in academic publications or derived projects, please cite the paper it accompanies:
 
-> XXX. (2025). *Towards an Evaluative AI Framework for Hypothesis-Driven Strategic Decision-Making in SMEs*. https://doi.org/10.1234/example.doi
+> Molina-Abril, G., Calvet Liñán, L., & Riera Terrén, D. (2025). *Towards an Evaluative AI Framework for Hypothesis-Driven Strategic Decision-Making in SMEs*. In *Intelligent Data Engineering and Automated Learning – IDEAL 2025*, Lecture Notes in Computer Science. Springer. https://doi.org/10.1007/978-3-032-10486-1_34
+
+The accepted manuscript is freely available at https://molina-abril.github.io and deposited in the UOC institutional repository O2 (https://hdl.handle.net/10609/156324, publicly available from 7 November 2026).
 
 You can also use the [`CITATION.cff`](./CITATION.cff) file to import the citation directly into reference managers.
 
