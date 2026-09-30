@@ -13,6 +13,7 @@ authors:
     given-names: "Daniel"
     orcid: "https://orcid.org/0000-0002-4718-7234"
 version: "1.0.0"
+doi: "10.5281/zenodo.23065542"
 date-released: "2026-09-30"
 license: MIT
 repository-code: "https://github.com/yinx89/evaluative-ai-strategic-decision-smes"
