@@ -1,5 +1,7 @@
 # Towards an Evaluative AI Framework for Hypothesis-Driven Strategic Decision-Making in SMEs
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23065542.svg)](https://doi.org/10.5281/zenodo.23065542)
+
 > ⚠️ This is an ongoing work, being developed as part of a three-year industrial PhD project. Regular updates and improvements will be made based on feedback and research findings.
 
 This repository implements a process-centric Evaluative AI (EAI) framework designed to address strategic decision-making challenges in SMEs. The framework integrates:
