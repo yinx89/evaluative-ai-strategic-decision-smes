@@ -25,8 +25,18 @@ preferred-citation:
       orcid: "https://orcid.org/0000-0001-7877-0812"
     - family-names: "Calvet Liñán"
       given-names: "Laura"
+      orcid: "https://orcid.org/0000-0001-8425-1381"
     - family-names: "Riera Terrén"
       given-names: "Daniel"
-  doi: "10.1007/978-3-032-10486-1_34"
-  year: 2025
+      orcid: "https://orcid.org/0000-0002-4718-7234"
+  editors:
+    - family-names: "Martínez"
+      given-names: "Luis"
   collection-title: "Intelligent Data Engineering and Automated Learning – IDEAL 2025"
+  collection-type: "proceedings"
+  volume: 16238
+  publisher:
+    name: "Springer"
+    city: "Cham"
+  year: 2026
+  doi: "10.1007/978-3-032-10486-1_34"
