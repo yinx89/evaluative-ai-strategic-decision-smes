@@ -347,49 +347,79 @@ class CompaniesHouseData:
 
         The Companies House officers endpoint returns named individuals (names,
         partial dates of birth, nationalities, correspondence addresses). This
-        project only ever uses how many officers a company has and how many have
-        resigned, as a governance indicator. Counting here, at ingestion time,
-        means no personal data is ever written to disk: data minimisation in the
-        sense of Art. 5(1)(c) GDPR.
+        project only uses how many officers a company has and how many have
+        resigned, as a governance indicator. Reducing the payload here, at
+        ingestion time, means no personal data is ever written to disk: data
+        minimisation in the sense of Art. 5(1)(c) GDPR.
+
+        The API's own ``active_count``/``resigned_count``/``total_results``
+        fields are authoritative and are used when present. ``items`` is only a
+        fallback, because that list is paginated (``items_per_page``, 35 by
+        default) and counting it would under-report companies with a long
+        officer history.
         """
+        empty = {
+            'officers_exists': False,
+            'officers_active_count': 0,
+            'officers_resigned_count': 0,
+            'officers_total_count': 0,
+        }
         if not payload:
-            return {
-                'officers_exists': False,
-                'officers_active_count': 0,
-                'officers_resigned_count': 0,
-                'officers_total_count': 0,
-            }
+            return empty
+
         items = payload.get('items') or []
-        resigned = sum(1 for item in items if item.get('resigned_on'))
+        active = payload.get('active_count')
+        resigned = payload.get('resigned_count')
+        total = payload.get('total_results')
+
+        if active is None:
+            active = sum(1 for item in items if not item.get('resigned_on'))
+        if resigned is None:
+            resigned = sum(1 for item in items if item.get('resigned_on'))
+        if total is None:
+            total = len(items) or (active + resigned)
+
         return {
             'officers_exists': True,
-            'officers_active_count': len(items) - resigned,
-            'officers_resigned_count': resigned,
-            'officers_total_count': len(items),
+            'officers_active_count': int(active),
+            'officers_resigned_count': int(resigned),
+            'officers_total_count': int(total),
         }
 
     @staticmethod
     def _summarise_psc(payload: Optional[Dict[str, Any]]) -> Dict[str, Any]:
         """Reduce a persons-with-significant-control payload to counts.
 
-        Same rationale as _summarise_officers: the analysis uses the number of
-        controlling parties, never their identities, so the named records are
-        discarded before anything is persisted.
+        Same rationale and same precedence as :meth:`_summarise_officers`: the
+        API's own counts are used when present, the paginated ``items`` list is
+        only a fallback, and the named records are discarded either way.
         """
+        empty = {
+            'psc_exists': False,
+            'psc_active_count': 0,
+            'psc_ceased_count': 0,
+            'psc_total_count': 0,
+        }
         if not payload:
-            return {
-                'psc_exists': False,
-                'psc_active_count': 0,
-                'psc_ceased_count': 0,
-                'psc_total_count': 0,
-            }
+            return empty
+
         items = payload.get('items') or []
-        ceased = sum(1 for item in items if item.get('ceased_on') or item.get('ceased'))
+        active = payload.get('active_count')
+        ceased = payload.get('ceased_count')
+        total = payload.get('total_results')
+
+        if active is None:
+            active = sum(1 for item in items if not (item.get('ceased_on') or item.get('ceased')))
+        if ceased is None:
+            ceased = sum(1 for item in items if item.get('ceased_on') or item.get('ceased'))
+        if total is None:
+            total = len(items) or (active + ceased)
+
         return {
             'psc_exists': True,
-            'psc_active_count': len(items) - ceased,
-            'psc_ceased_count': ceased,
-            'psc_total_count': len(items),
+            'psc_active_count': int(active),
+            'psc_ceased_count': int(ceased),
+            'psc_total_count': int(total),
         }
 
     def get_company_details(self, company_number: str) -> Dict[str, Any]:
