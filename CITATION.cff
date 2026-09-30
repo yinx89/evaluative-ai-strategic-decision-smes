@@ -1,14 +1,32 @@
 cff-version: 1.2.0
-message: "If you use this software, please cite the following work:"
-title: "Towards an Evaluative AI Framework for Hypothesis-Driven Strategic Decision-Making in SMEs"
+message: "If you use this software, please cite both the software and the paper."
+type: software
+title: "Evaluative AI for Strategic Decision-Making in SMEs: research artifact"
 authors:
   - family-names: "Molina-Abril"
-    given-names: "Gines"
+    given-names: "Ginés"
+    orcid: "https://orcid.org/0000-0001-7877-0812"
   - family-names: "Calvet Liñán"
     given-names: "Laura"
+    orcid: "https://orcid.org/0000-0001-8425-1381"
   - family-names: "Riera Terrén"
     given-names: "Daniel"
-date-released: "2025-07-04" #TODO REPLACE WHEN DOI IS READY
+    orcid: "https://orcid.org/0000-0002-4718-7234"
 version: "1.0.0"
-doi: "10.1234/example.doi"   #TODO REPLACE WHEN DOI IS READY
-url: "https://github.com/yinx89/evaluative-ai-framework-for-smes"
+date-released: "2026-09-30"
+license: MIT
+repository-code: "https://github.com/yinx89/evaluative-ai-strategic-decision-smes"
+preferred-citation:
+  type: conference-paper
+  title: "Towards an Evaluative AI Framework for Hypothesis-Driven Strategic Decision-Making in SMEs"
+  authors:
+    - family-names: "Molina-Abril"
+      given-names: "Ginés"
+      orcid: "https://orcid.org/0000-0001-7877-0812"
+    - family-names: "Calvet Liñán"
+      given-names: "Laura"
+    - family-names: "Riera Terrén"
+      given-names: "Daniel"
+  doi: "10.1007/978-3-032-10486-1_34"
+  year: 2025
+  collection-title: "Intelligent Data Engineering and Automated Learning – IDEAL 2025"
