@@ -38,7 +38,6 @@ FOR company IN remaining_companies:
     IF basic_info exists:
         GET additional_info:
             - filing_history
-            - officers
             - financial_data
             - other_company_details
         
