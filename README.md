@@ -127,10 +127,9 @@ Nothing personal is therefore written to disk or reaches any output. This is
 data minimisation in the sense of Art. 5(1)(c) GDPR, and no special categories
 of personal data under Art. 9 GDPR are involved at any point.
 
-Verified against 337 stored company records covering 8,425 filing-history
-entries: 1,613 of them carried a personal name before this change and none does
-after it, while all 6,290 entries carrying the dates the analysis uses are
-preserved unchanged.
+The claim is verifiable in the code itself: `_strip_personal_fields` in
+`ingest/companies_house_data.py` lists the fields removed, and the officers and
+PSC endpoints appear nowhere in the request path.
 
 ## 📚 Citation
 
